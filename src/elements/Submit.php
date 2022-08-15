@@ -12,10 +12,6 @@ class Submit extends FormElement
         return $this;
     }
 
-    private function buildSubmit(){
-
-    }
-
     public function getSubmit()
     {
         return $this->html;

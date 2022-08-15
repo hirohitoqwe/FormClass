@@ -11,7 +11,10 @@ echo '<pre>';
 
 $form = new Form('first', 'post');
 
-$form->addInpute(new Input('name', 'text', '', '123'));
+$input1=(new Input('name', 'text', '', ''))->addTitle('zalupa');
+
+$form->addInpute($input1);
+$form->addInpute(new Input('sename', 'password', '', ''));
 $form->addSubmit(new Submit('Отправить'));
 $html = $form->buildForm();
 

@@ -1,5 +1,9 @@
 <?php
+
 namespace mainForm;
+
+use Element\Submit;
+use Element\Input;
 
 class Form
 {
@@ -14,35 +18,33 @@ class Form
         $this->attributes['enctype'] = $enctype;
     }
 
-    public function addInpute(\Element\Input $input)
+    public function addInpute(Input $input)
     {
-        $this->partsOfForm['input'] = $input;
+        $this->partsOfForm['input'][] = $input;
     }
 
-    public function addSubmit(\Element\Submit $submit)
+    public function addSubmit(Submit $submit)
     {
         $this->partsOfForm['submit'] = $submit;
     }
 
+    private function buildHeadOfForm()
+    {
+        return sprintf('<form name=%s  method=%s action=%s >', $this->attributes['name'], $this->attributes['method'], $this->attributes['action'] ?? "") . PHP_EOL;
+    }
 
     public function buildForm()
     {
-        var_dump($this->attributes);
-        $html=$this->buildHeadOfForm();
-
+        $html = $this->buildHeadOfForm();
         foreach ($this->partsOfForm['input'] as $input) {
             $html .= $input->getInput();
         }
 
-        $html .= $this->partsOfForm['submit']->getSubmit;
+        $html .= $this->partsOfForm['submit']->getSubmit();
 
         return $html;
 
     }
 
-    private function buildHeadOfForm()
-    {
-        $html = sprintf('<form name=%s  method=%s action=%s >', $this->attributes['name'], $this->attributes['method'], $this->attributes['action'] ?? "") . PHP_EOL;
-        return $html;
-    }
+
 }
