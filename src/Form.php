@@ -1,39 +1,48 @@
 <?php
+namespace mainForm;
 
 class Form
 {
     private array $partsOfForm = [];
     private array $attributes = [];
 
-    public function __construct(string $name, $method, $action = "")
+    public function __construct(string $name, $method, $action = "", $enctype = "")
     {
         $this->attributes['name'] = $name;
         $this->attributes['method'] = $method;
         $this->attributes['action'] = $action;
+        $this->attributes['enctype'] = $enctype;
     }
 
-    public function addInpute(string $type, string $name, $value = '', $placeholder = '')
+    public function addInpute(\Element\Input $input)
     {
-        $this->attributes['input'][] = ['type' => $type, 'name' => $name, 'value' => $value, $placeholder => $placeholder];
+        $this->partsOfForm['input'] = $input;
     }
 
-    public function addSubmit(string $value)
+    public function addSubmit(\Element\Submit $submit)
     {
-        $this->attributes['submit'] = ['value' => $value];
+        $this->partsOfForm['submit'] = $submit;
     }
+
 
     public function buildForm()
     {
         var_dump($this->attributes);
+        $html=$this->buildHeadOfForm();
 
-        $html = sprintf('<form name=%s  method=%s action=%s >',$this->attributes['name'],$this->attributes['method'],$this->attributes['action'] ?? "" ). PHP_EOL;
-
-        foreach ($this->attributes['input'] as $input) {
-            $html .=sprintf('<input type=%s name=%s value=%s placeholder=%s>',$input['type'],$input['name'],$input['value'],$input['placeholder'] ?? "").PHP_EOL;;
+        foreach ($this->partsOfForm['input'] as $input) {
+            $html .= $input->getInput();
         }
 
-        $html .=sprintf('<input type=submit value=%s>',$this->attributes['submit']['value']).PHP_EOL ."</form>";
+        $html .= $this->partsOfForm['submit']->getSubmit;
 
+        return $html;
+
+    }
+
+    private function buildHeadOfForm()
+    {
+        $html = sprintf('<form name=%s  method=%s action=%s >', $this->attributes['name'], $this->attributes['method'], $this->attributes['action'] ?? "") . PHP_EOL;
         return $html;
     }
 }
