@@ -13,7 +13,7 @@ class Input extends FormElement
     }
 
     public function addTitle(string $text){
-        $this->html=sprintf('<p>%s</p>',$text).$this->html;
+        $this->html=sprintf('<p>%s</p>',$text).PHP_EOL.$this->html;
         return $this;
     }
 

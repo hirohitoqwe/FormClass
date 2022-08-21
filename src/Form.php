@@ -4,6 +4,7 @@ namespace mainForm;
 
 use Element\Submit;
 use Element\Input;
+use Element\TextArea;
 
 class Form
 {
@@ -28,10 +29,16 @@ class Form
         $this->partsOfForm['submit'] = $submit;
     }
 
+    public function addTextArea(TextArea $textArea){
+        $this->partsOfForm['textArea'][]=$textArea;
+    }
+
     private function buildHeadOfForm()
     {
         return sprintf('<form name=%s  method=%s action=%s >', $this->attributes['name'], $this->attributes['method'], $this->attributes['action'] ?? "") . PHP_EOL;
     }
+
+
 
     public function buildForm()
     {
@@ -40,10 +47,15 @@ class Form
             $html .= $input->getInput();
         }
 
-        $html .= $this->partsOfForm['submit']->getSubmit();
+        if (!empty($this->partsOfForm['textArea'])){
+            foreach ($this->partsOfForm['textArea'] as $textArea) {
+                $html .= $textArea->getTextArea();
+            }
+        }
 
+        $html .= $this->partsOfForm['submit']->getSubmit().PHP_EOL;
+        $html.='</form>';
         return $html;
-
     }
 
 
