@@ -8,7 +8,6 @@ class Input extends FormElement
 
     public function __construct(private string $name, private string $type, private string $value = '', private string $placeholder = '')
     {
-        $this->html = $this->buildElement();
         return $this;
     }
 
@@ -17,7 +16,7 @@ class Input extends FormElement
         return $this;
     }
 
-    private function buildElement():string{
+    protected function buildElement():string{
         if (!empty($this->placeholder)){
             return sprintf('<p><input type=%s name=%s placeholder=%s></p>', $this->type, $this->name,$this->placeholder);
         }else{
@@ -28,6 +27,7 @@ class Input extends FormElement
 
     public function getInput():string
     {
+        $this->html = $this->buildElement();
         return $this->html;
     }
 

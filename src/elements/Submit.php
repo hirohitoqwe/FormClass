@@ -2,7 +2,7 @@
 
 namespace Element;
 
-class Submit extends FormElement//TODO Singltone
+class Submit extends FormElement
 {
     private static $instance;
     private string $value;
@@ -33,10 +33,13 @@ class Submit extends FormElement//TODO Singltone
         return $this;
     }
 
+    protected function buildElement(){
+        return sprintf('<input type=submit value=%s>', $this->value) . "</form>";
+    }
+
     public function getSubmit()
     {
-        $html = sprintf('<input type=submit value=%s>', $this->value) . "</form>";
-        return $html;
+        return $this->buildElement();
     }
 
 
