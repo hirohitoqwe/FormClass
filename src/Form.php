@@ -5,6 +5,7 @@ namespace mainForm;
 use Element\Submit;
 use Element\Input;
 use Element\TextArea;
+use Element\Button;
 
 class Form
 {
@@ -33,6 +34,11 @@ class Form
         $this->partsOfForm['textArea'][]=$textArea;
     }
 
+    public function addButton(Button $button){
+        $this->partsOfForm['button'][]=$button;
+    }
+
+
     private function buildHeadOfForm()
     {
         return sprintf('<form name=%s  method=%s action=%s >', $this->attributes['name'], $this->attributes['method'], $this->attributes['action'] ?? "") . PHP_EOL;
@@ -52,7 +58,11 @@ class Form
                 $html .= $textArea->getTextArea();
             }
         }
-
+        if (!empty($this->partsOfForm['button'])){
+            foreach ($this->partsOfForm['button'] as $button) {
+                $html .= $button->getButton();
+            }
+        }
         $html .= $this->partsOfForm['submit']->getSubmit().PHP_EOL;
         $html.='</form>';
         return $html;

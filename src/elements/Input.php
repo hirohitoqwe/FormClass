@@ -11,12 +11,8 @@ class Input extends FormElement
         return $this;
     }
 
-    public function addTitle(string $text){
-        $this->html=sprintf('<p>%s</p>',$text).PHP_EOL.$this->html;
-        return $this;
-    }
 
-    protected function buildElement():string{
+    protected function buildElement(){
         if (!empty($this->placeholder)){
             return sprintf('<p><input type=%s name=%s placeholder=%s></p>', $this->type, $this->name,$this->placeholder);
         }else{
@@ -25,10 +21,14 @@ class Input extends FormElement
 
     }
 
+    public function addTitle(?string $text){
+        $this->html=sprintf('<p>%s</p>',$text).PHP_EOL;
+        return $this;
+    }
     public function getInput():string
     {
         $this->html = $this->buildElement();
-        return $this->html;
+        return $this->html.PHP_EOL;
     }
 
 }

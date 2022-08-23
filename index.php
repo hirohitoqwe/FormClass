@@ -8,6 +8,7 @@ use mainForm\Form;
 use Element\Input;
 use Element\Submit;
 use Element\TextArea;
+use Element\Button;
 
 $form = new Form('first', 'post');
 
@@ -18,7 +19,7 @@ $input1 = (new Input('name', 'text', '', ''))->addTitle('Name');
 $form->addInpute($input1);
 $form->addInpute((new Input('surname', 'text', '', ''))->addTitle('Surname'));
 $form->addTextArea(new TextArea(10,10,'text','hello world'));
-
+$form->addButton(new Button('knopka','jmak',));
 
 $form->addSubmit($submit->addValue('Send'));
 

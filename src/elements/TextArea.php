@@ -21,6 +21,6 @@ class TextArea extends FormElement
     public function getTextArea(): string
     {
         $this->html = $this->BuildElement();
-        return $this->html;
+        return $this->html.PHP_EOL;
     }
 }

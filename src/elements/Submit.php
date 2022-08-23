@@ -21,19 +21,22 @@ class Submit extends FormElement
     }
 
 
-    public static function getInstance(){
-        if (!isset(self::$instance)){
-            self::$instance=new static();
+    public static function getInstance()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new static();
         }
         return self::$instance;
     }
 
-    public function addValue(string $value = ''){
-        $this->value=$value;
+    public function addValue(string $value = '')
+    {
+        $this->value = $value;
         return $this;
     }
 
-    protected function buildElement(){
+    protected function buildElement()
+    {
         return sprintf('<input type=submit value=%s>', $this->value) . "</form>";
     }
 
