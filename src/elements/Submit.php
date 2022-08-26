@@ -21,7 +21,7 @@ class Submit extends FormElement
     }
 
 
-    public static function getInstance()
+    public static function getInstance():Submit
     {
         if (!isset(self::$instance)) {
             self::$instance = new static();
@@ -29,18 +29,18 @@ class Submit extends FormElement
         return self::$instance;
     }
 
-    public function addValue(string $value = '')
+    public function addValue(string $value = ''):Submit
     {
         $this->value = $value;
         return $this;
     }
 
-    protected function buildElement()
+    protected function buildElement():string
     {
         return sprintf('<input type=submit value=%s>', $this->value) . "</form>";
     }
 
-    public function getSubmit()
+    public function getSubmit():string
     {
         return $this->buildElement();
     }

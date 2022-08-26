@@ -4,7 +4,7 @@ namespace Element;
 
 class Input extends FormElement
 {
-    private string $html;
+    private string $html='';
 
     public function __construct(private string $name, private string $type, private string $value = '', private string $placeholder = '')
     {
@@ -12,7 +12,7 @@ class Input extends FormElement
     }
 
 
-    protected function buildElement(){
+    protected function buildElement():string{
         if (!empty($this->placeholder)){
             return sprintf('<p><input type=%s name=%s placeholder=%s></p>', $this->type, $this->name,$this->placeholder);
         }else{
@@ -21,7 +21,7 @@ class Input extends FormElement
 
     }
 
-    public function addTitle(?string $text){
+    public function addTitle(string $text):Input{
         $this->html=sprintf('<p>%s</p>',$text).PHP_EOL;
         return $this;
     }
