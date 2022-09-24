@@ -32,14 +32,3 @@ $html = $form->buildForm();
 
 echo $html;
 ?>
-//развертка
-<select size="">
-    <option value="3">Пункт 1</option>
-    <option value="3">Пункт 2</option>
-</select>
-//прокрутка
-<select size="3">
-    <option value="1">3</option>
-    <option value="2">4</option>
-    <option value="3">5</option>
-</select>

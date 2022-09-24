@@ -4,7 +4,7 @@ namespace Element;
 
 class Submit extends FormElement
 {
-    private static $instance;
+    private static Submit $instance;//?
     private string $value;
 
     public function __construct()
